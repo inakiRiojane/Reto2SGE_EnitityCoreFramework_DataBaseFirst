@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Reto2eSge_3__.Core.Entities;
-
+using Reto2eSge_3__.Core.Models;
+using Reto2eSge_3__.Paginador;
 
 namespace Reto2eSge_3__.Controllers
 {
@@ -16,7 +17,8 @@ namespace Reto2eSge_3__.Controllers
 
     public class ClientesController : ControllerBase
     {
-
+        private readonly int _RegistrosPorPagina = 5;
+        private PaginadorGenerico<Customer> _PaginadorCustomers;
         private readonly NorthwindContext _context;
         private readonly IMapper _mapper;
 
@@ -95,9 +97,20 @@ registros duplicados.*/
             return Ok(customers);
 
         }
+
+
+
+        [HttpGet("Custom info")]
+        public async Task<IEnumerable<ClientesCustomInfoModel>> GetCustomInfo(int pageNumber = 1, int pageSize = 5)
+        {
+
+
+            return await _context.Customers
+                     .ProjectTo<ClientesCustomInfoModel>(_mapper.ConfigurationProvider)
+                            .Skip((pageNumber - 1) * pageSize)
+                            .Take(pageSize)
+                            .ToListAsync();
+        }
     }
-
-
-
 }
 
