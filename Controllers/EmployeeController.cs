@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Reto2eSgeG3.Core.Models;
-using Reto2eSgeG3.Data.Context;
+using Reto2eSge_3__;
+using Reto2eSge_3__.Core.Entities;
 
 namespace Reto2eSgeG3.Core.Entitis.Controllers
 {
@@ -20,7 +20,7 @@ namespace Reto2eSgeG3.Core.Entitis.Controllers
                 .ToListAsync();
 
 
-            return result;
+            return result; 
         }
 
         
