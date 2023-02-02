@@ -78,17 +78,20 @@ namespace Reto2eSge_3__.Controllers
         public async Task<ActionResult> Put(int id, [FromBody] CategoryModel categoryPutModel)
         {
 
-            var mapeado = _mapper.Map<Category>(categoryPutModel);
-            var category = await _northwindContext.Categories.FindAsync(id);
+            //var mapeado = _mapper.Map<Category>(categoryPutModel);
+            //var category = await _northwindContext.Categories.FindAsync(id);
 
+            var category = await _northwindContext.Categories
+                .AsTracking()
+                .FirstOrDefaultAsync(x=> x.CategoryId == id);
 
             if (category == null)
             {
                 return NotFound();
             }
 
-            mapeado.CategoryName = category.CategoryName;
-           // category.Description = mapeado.Description;
+            //mapeado.CategoryName = category.CategoryName;
+            category.Description = categoryPutModel.Description;
 
             await _northwindContext.SaveChangesAsync();
             return Ok();

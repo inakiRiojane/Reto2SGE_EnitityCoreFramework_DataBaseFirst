@@ -18,7 +18,7 @@ var conectionString = builder.Configuration.GetConnectionString("DefaultConectio
 builder.Services.AddDbContext<NorthwindContext>(opciones =>
 {
     opciones.UseSqlServer(conectionString, sqlServer => sqlServer.UseNetTopologySuite());
-    opciones.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    opciones.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //TODO set No Tracking
 });
 
 builder.Services.AddDbContext<NorthwindContext>(opciones =>

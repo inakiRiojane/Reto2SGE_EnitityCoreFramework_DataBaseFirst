@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Reto2eSge_3__.Core.Entities;
-
+using Reto2eSge_3__.Core.Models;
 
 namespace Reto2eSge_3__.Controllers
 {
@@ -94,6 +94,18 @@ registros duplicados.*/
             var customers = _context.Customers.Where(c => countries.Contains(c.Country));
             return Ok(customers);
 
+        }
+
+   
+
+    [HttpGet("Custom info")]
+    public async Task<IEnumerable<ClientesCustomInfoModel>> GetCustomInfo()
+    {
+
+
+            return await _context.Customers
+                     .ProjectTo<ClientesCustomInfoModel>(_mapper.ConfigurationProvider)
+                            .ToListAsync();
         }
     }
 
