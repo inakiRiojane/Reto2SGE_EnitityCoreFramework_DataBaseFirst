@@ -1,8 +1,7 @@
-﻿using Reto2eSge_3__.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Reto2eSgeG3.Core.Entitis
+namespace Reto2eSge_3__.Core.Entities
 {
     public partial class Category
     {
@@ -19,5 +18,3 @@ namespace Reto2eSgeG3.Core.Entitis
         public virtual ICollection<Product> Products { get; set; }
     }
 }
-
-

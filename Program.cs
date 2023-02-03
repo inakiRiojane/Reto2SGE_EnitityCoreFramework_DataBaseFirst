@@ -14,11 +14,12 @@ builder.Services.AddSwaggerGen();
 var conectionString = builder.Configuration.GetConnectionString("DefaultConection");
 
 
+//builder.Services.AddDbContext<NorthwindContext>(opciones => opciones.UseSqlServer(conectionString));
 
 builder.Services.AddDbContext<NorthwindContext>(opciones =>
 {
     opciones.UseSqlServer(conectionString, sqlServer => sqlServer.UseNetTopologySuite());
-    opciones.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //TODO set No Tracking
+    //opciones.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //TODO set No Tracking
 });
 
 builder.Services.AddDbContext<NorthwindContext>(opciones =>
