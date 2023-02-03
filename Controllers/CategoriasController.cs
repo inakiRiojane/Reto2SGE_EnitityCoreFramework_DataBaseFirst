@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Reto2eSge_3__.Core.Entities;
 using Reto2eSge_3__.Core.Models;
 using Reto2eSgeG3.Core.Entitis;
 using System.Net;

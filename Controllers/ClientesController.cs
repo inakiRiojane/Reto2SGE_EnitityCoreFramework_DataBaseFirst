@@ -18,7 +18,7 @@ namespace Reto2eSge_3__.Controllers
     public class ClientesController : ControllerBase
     {
         private readonly int _RegistrosPorPagina = 5;
-        private PaginadorGenerico<Customer> _PaginadorCustomers;
+        //private PaginadorGenerico<Customer> _PaginadorCustomers;
         private readonly NorthwindContext _context;
         private readonly IMapper _mapper;
 
@@ -30,59 +30,30 @@ namespace Reto2eSge_3__.Controllers
             _context = context;
         }
 
-
-
-        /*Crear una acción para recuperar todos los países existentes en la tabla Clientes de
-ordenados descendentemente por nombre. En la lista resultante no pueden existir
-registros duplicados.*/
-
-
-        [HttpGet]
+        [HttpGet("Paises")]
         public async Task<IEnumerable<ClientesModel>> Get()
         {
-            // -- MAPEADO --
-            //var algo = _northwindContext.Categories.ToList();
-
-            //var algo2 = new List<CategoryViewModel>();
-
-            //foreach (var a in algo)
-            //{
-            //    algo2.Add(new CategoryViewModel()
-            //    {
-            //        CategoryName = a.CategoryName,
-            //        Description = a.Description
-            //    });
-            //}
-
 
             return await _context.Customers
-                     .ProjectTo<ClientesModel>(_mapper.ConfigurationProvider)
-                            .ToListAsync();
+                .Select(cli => new ClientesModel()
+                {
+                    Country = cli.Country
+                })
+                   .Distinct()
+                   .OrderByDescending(cli => cli.Country)
+                   .ToListAsync();
+
+
         }
 
-
-
-
-        /*Crear una acción para recuperar todos clientes para un determinado país. El resultado
-        tiene que estar ordenado por “CompanyName” y después por “ContactName”. No se
-        ebe devolver la columna “CustomerID” en el resultado.*/
-
-        [HttpGet("filtrarvalor")]
+        [HttpGet("filtrarPais")]
 
         public async Task<IEnumerable<Customer>> FiltrarValor(string Valor)
         {
-            /*  var aux = _context.Customers
-                  .Where(genero => genero.City.Contains(Valor))
-                  .OrderByDescending(genero => genero.City);
-
-
-              var auxLq = (from Customers in _context.Customers
-                           where Customers.City.Contains(Valor)
-                           orderby Customers.CompanyName
-                           select Customers).ToList();*/
+            
 
             return await _context.Customers
-                .Where(Customers => Customers.City.Contains(Valor))
+                .Where(Customers => Customers.Country.Contains(Valor))
                 .OrderBy(Customers => Customers.CompanyName)
                 .ThenBy(Customers => Customers.ContactName)
                 .ToArrayAsync();

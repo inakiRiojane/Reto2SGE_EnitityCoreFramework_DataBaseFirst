@@ -11,8 +11,7 @@ namespace MyERPVv2.Profiles
         {
             CreateMap<Category, CategoryGetModel>();
             CreateMap<Category, CategoryModel>().ReverseMap();
-
-            CreateMap<Customer, ClientesCustomInfoModel>();
+            CreateMap<Customer, ClientesModel>();
             CreateMap<Employee, EmployeeGetModel>();
 
             //CreateMap<Category, CategoryViewModel>()
