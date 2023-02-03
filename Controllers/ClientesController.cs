@@ -38,23 +38,29 @@ registros duplicados.*/
 
 
         [HttpGet]
-        public ActionResult<Customer> GetCountries()
+        public async Task<IEnumerable<ClientesModel>> Get()
         {
+            // -- MAPEADO --
+            //var algo = _northwindContext.Categories.ToList();
+
+            //var algo2 = new List<CategoryViewModel>();
+
+            //foreach (var a in algo)
+            //{
+            //    algo2.Add(new CategoryViewModel()
+            //    {
+            //        CategoryName = a.CategoryName,
+            //        Description = a.Description
+            //    });
+            //}
 
 
-            var countries = _context.Customers
-                .Select(c => c.Country)
-                .Distinct()
-                .OrderByDescending(c => c)
-                .ToList();
-
-            return View(countries);
+            return await _context.Customers
+                     .ProjectTo<ClientesModel>(_mapper.ConfigurationProvider)
+                            .ToListAsync();
         }
 
-        private ActionResult<Customer> View(List<string?> countries)
-        {
-            throw new NotImplementedException();
-        }
+
 
 
         /*Crear una acción para recuperar todos clientes para un determinado país. El resultado
