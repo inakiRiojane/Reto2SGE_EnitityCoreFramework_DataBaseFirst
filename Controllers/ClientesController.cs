@@ -101,15 +101,15 @@ registros duplicados.*/
 
 
         [HttpGet("Custom info")]
-        public async Task<IEnumerable<ClientesCustomInfoModel>> GetCustomInfo(int pageNumber = 1, int pageSize = 5)
+        public async Task<IEnumerable<ClientesCustomInfoModel>> GetCustomInfo( int pageSizeFiveTenOrFifteen = 5)
         {
 
-
-            return await _context.Customers
-                     .ProjectTo<ClientesCustomInfoModel>(_mapper.ConfigurationProvider)
-                            .Skip((pageNumber - 1) * pageSize)
-                            .Take(pageSize)
-                            .ToListAsync();
+                return await _context.Customers
+                    .ProjectTo<ClientesCustomInfoModel>(_mapper.ConfigurationProvider)
+                           .Skip((1 - 1) * pageSizeFiveTenOrFifteen)
+                           .Take(pageSizeFiveTenOrFifteen)
+                           .ToListAsync();  
+           
         }
     }
 }

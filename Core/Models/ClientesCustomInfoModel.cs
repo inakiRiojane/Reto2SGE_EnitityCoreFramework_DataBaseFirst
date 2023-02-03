@@ -6,7 +6,5 @@
         public string CompanyName { get; set; } = null!;
         public string? ContactName { get; set; }
 
-
-
     }
 }
