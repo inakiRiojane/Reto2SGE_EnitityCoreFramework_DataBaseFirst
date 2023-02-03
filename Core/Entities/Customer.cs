@@ -23,5 +23,6 @@ namespace Reto2eSge_3__.Core.Entities
         public string? Fax { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+
     }
 }

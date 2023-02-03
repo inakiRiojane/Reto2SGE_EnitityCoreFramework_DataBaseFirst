@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Reto2eSge_3__.Core.Entities
 {
@@ -30,13 +29,11 @@ namespace Reto2eSge_3__.Core.Entities
         public string? Notes { get; set; }
         public int? ReportsTo { get; set; }
         public string? PhotoPath { get; set; }
+        public string? Password { get; set; }
 
-        [StringLength(50, ErrorMessage = "Longitud maxima superada.")]
-        public string? Password { get; set; } 
-
-         
         public virtual Employee? ReportsToNavigation { get; set; }
         public virtual ICollection<Employee> InverseReportsToNavigation { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+
     }
 }

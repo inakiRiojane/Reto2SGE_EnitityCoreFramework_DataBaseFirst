@@ -1,5 +1,4 @@
-﻿using Reto2eSgeG3.Core.Entitis;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Reto2eSge_3__.Core.Entities

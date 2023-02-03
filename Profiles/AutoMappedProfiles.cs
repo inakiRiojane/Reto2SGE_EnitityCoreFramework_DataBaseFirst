@@ -13,6 +13,7 @@ namespace MyERPVv2.Profiles
             CreateMap<Category, CategoryModel>().ReverseMap();
 
             CreateMap<Customer, ClientesCustomInfoModel>();
+            CreateMap<Employee, EmployeeGetModel>();
 
             //CreateMap<Category, CategoryViewModel>()
             //    .ForMember(m => m.CategoryName, e => e.MapFrom(prop => prop.Description));
